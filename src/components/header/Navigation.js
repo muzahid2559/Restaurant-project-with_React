@@ -6,7 +6,7 @@ const Navigation = () =>{
         <div>
             <Navbar dark color="dark">
                 <div className="container">
-                    <NavbarBrand href="/"> Resturent </NavbarBrand>
+                    <NavbarBrand href="/"> Restaurant </NavbarBrand>
                 </div>
             </Navbar>
         </div>
