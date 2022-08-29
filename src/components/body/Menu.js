@@ -27,8 +27,7 @@ class Menu extends Component{
 
         let dishDetail = null;
         if(this.state.selectedDish != null){
-            dishDetail = <DishDetail 
-            dish = {this.state.selectedDish}/>
+            dishDetail = <DishDetail dish = {this.state.selectedDish}/>
         }
 
         return(
