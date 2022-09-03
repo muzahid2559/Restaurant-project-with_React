@@ -1,15 +1,22 @@
 import React, {Component} from "react";
-import DISHES from "../../data/dishes";
-import COMMENTS from "../../data/comments";
 import MenuItem from "./MenItem";
 import DishDetail from "./DishDetail";
 import {CardColumns, Modal, ModalBody, ModalFooter, Button} from 'reactstrap'
+import {connect} from 'react-redux';
+
+
+// rediux
+const mapStateToProps = state =>{
+    console.log(state);
+    return {
+        dishes: state.dishes,
+        comments: state.comments
+    }
+}
 
 
 class Menu extends Component{
     state = {
-        dishes : DISHES,
-        comments : COMMENTS,
         selectedDish : null,
         modalOpen :false
 
@@ -31,7 +38,7 @@ class Menu extends Component{
     render(){
         document.title ="Menu";
 
-        const menu = this.state.dishes.map(item =>{
+        const menu = this.props.dishes.map(item =>{
             return(
                 <MenuItem 
                 dish={item} 
@@ -43,7 +50,7 @@ class Menu extends Component{
 
         let dishDetail = null;
         if(this.state.selectedDish != null){
-            const comments = this.state.comments.filter( comment=> {
+            const comments = this.props.comments.filter( comment=> {
                 return comment.dishId === this.state.selectedDish.id;
             })
             dishDetail = <DishDetail dish = {this.state.selectedDish} comments = {comments}/>
@@ -69,4 +76,4 @@ class Menu extends Component{
     }
 }
 
-export default Menu;
+export default connect (mapStateToProps)(Menu);
