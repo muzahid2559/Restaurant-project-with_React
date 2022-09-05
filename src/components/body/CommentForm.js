@@ -40,7 +40,7 @@ class CommentForm extends Component{
                     <Input type="text" name="author" value={this.state.author} placeholder="Your Name" onChange={this.handleInputChange} required/>
                     <br/>
 
-                    <Input type="select" name="rating" value={this.state.rating} onChange={this.handleInputChange}> 
+                    <Input type="select" name="rating" value={this.state.rating} style={{ width : "100%", marginBottom : "10px" }} onChange={this.handleInputChange}> 
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
