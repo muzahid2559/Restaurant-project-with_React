@@ -2,8 +2,13 @@ import React,{Component} from "react";
 import {Button, Form, FormGroup, Label, Input,Col} from 'reactstrap';
 import {LocalForm, Control, Errors} from 'react-redux-form';
 
-class Contact extends Component {
 
+const required = val => val && val.length;
+const isNumber = val => !isNaN(Number(val));
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+
+
+class Contact extends Component {
 
     handleSubmit = values =>{
         console.log(values);
@@ -27,7 +32,19 @@ class Contact extends Component {
                                         model = ".firstname"
                                         name ="firstname" 
                                         placeholder="First Name"
-                                        className="form-control" />
+                                        className="form-control" 
+                                        validators={{ required }}/>
+
+                                    <Errors 
+                                        className="text-danger"
+                                        model = ".firstname"
+                                        show="touched"
+                                        messages={
+                                            {
+                                                required: "Required"
+                                            }
+                                        }/>
+
                                 </Col>
                             </FormGroup>
 
@@ -38,7 +55,19 @@ class Contact extends Component {
                                         model = ".lastname"
                                         name ="lastname" 
                                         placeholder="Last Name" 
-                                        className="form-control"/>
+                                        className="form-control"
+                                        validators={{ required }}/>
+                                    
+                                    <Errors 
+                                        className="text-danger"
+                                        model = ".lastname"
+                                        show="touched"
+                                        messages={
+                                            {
+                                                required: "Required"
+                                            }
+                                        }/>
+
                                 </Col>
                             </FormGroup>
 
@@ -49,7 +78,20 @@ class Contact extends Component {
                                         model =".telnum"
                                         name ="telnum" 
                                         placeholder="Tel. Namber " 
-                                        className="form-control"/>
+                                        className="form-control"
+                                        validators={{ required, isNumber}}/>
+                                    
+                                    <Errors 
+                                        className="text-danger"
+                                        model = ".telnum"
+                                        show="touched"
+                                        messages={
+                                            {
+                                                required: "Required, ",
+                                                isNumber: "Invalid Number!"
+                                            }
+                                        }/>
+
                                 </Col>
                             </FormGroup>
 
@@ -57,10 +99,23 @@ class Contact extends Component {
                                 <Label htmlFor="email" md={2}>Email</Label>
                                 <Col md={10}>
                                     <Control.text 
-                                    model=".email"
-                                    name ="email" 
-                                    placeholder="Email"
-                                    className="form-control"/>
+                                        model=".email"
+                                        name ="email" 
+                                        placeholder="Email"
+                                        className="form-control"
+                                        validators={{ required, validEmail }}/>
+
+                                     <Errors 
+                                        className="text-danger"
+                                        model = ".email"
+                                        show="touched"
+                                        messages={
+                                            {
+                                                required: "Required, ",
+                                                validEmail: "Invalid Email!"
+                                            }
+                                        }/>
+
                                 </Col>
                             </FormGroup>
 
@@ -98,7 +153,18 @@ class Contact extends Component {
                                         model=".message"
                                         name ="message" 
                                         rows = "12" 
-                                        className="form-control"/>
+                                        className="form-control"
+                                        validators={{ required }}/>
+                                    <Errors 
+                                        className="text-danger"
+                                        model = ".message"
+                                        show="touched"
+                                        messages={
+                                            {
+                                                required: "Required"
+                                            }
+                                        }/>
+                                    
                                 </Col>
                             </FormGroup>
 
