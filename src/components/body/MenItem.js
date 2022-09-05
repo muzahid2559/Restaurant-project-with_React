@@ -18,7 +18,7 @@ const MenuItem = props => {
                         onClick = {props.DishSelect}
                         >
                             {props.dish.name}
-                            </CardTitle>
+                        </CardTitle>
                     </CardImgOverlay>
                 </CardBody>
             </Card>

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Form, Button, Input} from 'reactstrap'
+import {Form, Button, Input} from 'reactstrap';
 
 
 class CommentForm extends Component{
