@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import { baseUrl } from './baseUrl';
+import { type } from '@testing-library/user-event/dist/type';
 
 export const addComment = (dishId , author,rating, comment) =>({   
         type: actionTypes.ADD_COMMENT,
@@ -12,6 +13,25 @@ export const addComment = (dishId , author,rating, comment) =>({
     }   
 })
 
+export const commentLoading = () =>({
+    type:actionTypes.COMMENTS_LOADING
+})
+
+export const loadComment = comments =>({
+    type:actionTypes.LOAD_COMMENTS,
+    payload:comments
+
+})
+
+export const fetchComments =() => dispatch =>{
+    dispatch(commentLoading());
+   
+    axios.get(baseUrl + "comments")
+    .then(response => response.data)
+    .then(comments => dispatch(loadComment(comments)))
+}
+
+
 export const loadDishes = dishes =>({
     type: actionTypes.LOAD_DISHES,
     payload: dishes
@@ -20,6 +40,7 @@ export const loadDishes = dishes =>({
 export const dishesLoading = ()  =>({
     type: actionTypes.DISHES_LOADING,
 })
+
 
 export const fetchDishes = () =>{
     return dispatch =>{
